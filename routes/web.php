@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/', [ChatController::class, 'index']);
+Route::get('messages', [ChatController::class, 'fetchMessages']);
+Route::post('messages', [ChatController::class, 'senfMessages']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
